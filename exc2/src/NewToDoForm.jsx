@@ -20,12 +20,29 @@ export default function NewToDoForm({ onAdd }) {
   }
 
   return (
+    //making it a form instead of button does so that we can press enter to add
     <form onSubmit={(e) => handleSubmit(e)}>
+      {/** a controlled input (still unsure what than means)
+       * it makes the field display whatever is in state, so
+       * text  is the text from the state
+       */}
       <input
         value={text}
+        //OnChange happens every time the user puts a letter into the field
+        /** The event is the object the browser creates describing what happended
+         * Event contains a lot. its like a full report of what happened
+         * event.target: the element the event happened ont which in this case is the <input> itself
+         * event.target.value: every <input> element has a value property holding wthe text currently in it
+         * so .value reads that text. its the string that is handed to setText
+         * so: Reading it left to right: from the event, get the element, from the element, get its text.
+         */
         onChange={(event) => setText(event.target.value)}
+        //placeholder for when text is "" (empty)
         placeholder="New Task"
       />
+      {/**makes the add button grey when nothing is typed
+       * it cannot be clicked if it is grey
+       */}
       <button disabled={text.trim().length === 0}>Add</button>
     </form>
   );

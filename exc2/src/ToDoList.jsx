@@ -1,5 +1,6 @@
 import { useState } from "react";
 import NewToDoForm from "./NewToDoForm";
+import ToDoItem from "./ToDoItem";
 
 //The actual component. A bit confusing to me that it has the same name as toDoList just with big T
 //the two {} are deconstruction of props. react calls the component with one object and from the object we unpack two fields
@@ -17,6 +18,11 @@ export default function ToDoList({ firstName, todos }) {
   //an event handler that gets passed down to a child that will call it.
   //text is the value NewToDoForm sends
   function handleAdd(text) {
+    const newTodo = {
+      id: crypto.randomUUID(),
+      text: text,
+      done: false,
+    };
     //the thre dots ... is called spread. it just says build a new array with the old content + text
     //it is an immutable update. react requires this because it compares refferences
     setToDoList([...toDoList, text]);
@@ -34,16 +40,21 @@ export default function ToDoList({ firstName, todos }) {
        * and the form only gets to call a function
        */}
       <NewToDoForm onAdd={handleAdd} />
-      <ul>
-        {/**.map produces an array of elements.
-         * the => shows an arrow function. to the left of it is the paramteres and to the right is what is returned
-         * key is a special prop React uses to match elements across renders
-         * OBS: the text here and the text in handleAdd have nothing to do with each other
-         */}
-        {toDoList.map((text, index) => (
-          <li key={index}>{text}</li>
-        ))}
-      </ul>
+      {toDoList.length === 0 ? (
+        <p>Nothing to do</p>
+      ) : (
+        <ul>
+          {/**.map produces an array of elements.
+           * the => shows an arrow function. to the left of it is the paramteres and to the right is what is returned
+           * key is a special prop React uses to match elements across renders
+           * OBS: the text here and the text in handleAdd have nothing to do with each other
+           */}
+
+          {toDoList.map((todo) => (
+            <ToDoItem key={todo.id} todo={todo} />
+          ))}
+        </ul>
+      )}
     </>
   );
 }
