@@ -3,7 +3,7 @@ export default function ToDoItem({ todo }) {
     <li>
       <input type="checkbox" />
       <span>{todo.text}</span>
-      <button type="button"></button>
+      <button type="button">Delete</button>
     </li>
   );
 }

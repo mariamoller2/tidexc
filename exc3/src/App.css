@@ -1,0 +1,14 @@
+body {
+  background-color: rgb(240, 198, 234);
+}
+
+button {
+  background-color: aqua;
+  font-family: "Handjet", sans-serif;
+}
+
+@media (min-width: 560px) {
+  body {
+    background-color: brown;
+  }
+}

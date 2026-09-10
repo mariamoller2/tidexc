@@ -1,7 +1,7 @@
 import { useState } from "react";
 
 //onAdd is a function coming from ToDoList where it is called handleAdd
-//this componen does not know what onAdd does it just knows it can call it
+//this component does not know what onAdd does it just knows it can call it
 export default function NewToDoForm({ onAdd }) {
   //This is the state of the half finsihed text menaing everything before the user press add or enter
   //We need this because two things depend on this state. wihtout it the textbox would be wiped clean after every key stroke
