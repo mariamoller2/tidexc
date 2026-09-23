@@ -1,7 +1,10 @@
 import Parse from "parse";
+
 const TodoItem = Parse.Object.extend("TodoItem");
 // React is happier with plain JS objects than with Parse objects,
 // and this is also where we unify the treatment of `id` with the other fields
+
+//Function that converts Parse object into JavaScript object
 function toPlainObject(parseObject) {
   return {
     id: parseObject.id,
